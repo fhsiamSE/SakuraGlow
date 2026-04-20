@@ -14,7 +14,7 @@
   <div class="card shadow-sm">
     <div class="card-body">
 
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row g-3">
@@ -39,25 +39,20 @@
           <!-- Price -->
           <div class="col-md-6">
             <label class="form-label">Price</label>
-            <input type="number" name="price" class="form-control" placeholder="Enter price">
+            <input type="number" name="price" class="form-control" placeholder="Enter price"required>
           </div>
 
-          <!-- Quantity -->
-          <div class="col-md-6">
-            <label class="form-label">Quantity</label>
-            <input type="number" name="quantity" class="form-control" placeholder="Enter stock quantity">
-          </div>
 
           <!-- Description -->
           <div class="col-12">
             <label class="form-label">Description</label>
-            <textarea name="description" class="form-control" rows="4" placeholder="Product description..."></textarea>
+            <textarea name="description" class="form-control" rows="4" placeholder="Product description..." required></textarea>
           </div>
 
           <!-- Image -->
           <div class="col-12">
-            <label class="form-label">Product Image</label>
-            <input type="file" name="image" class="form-control">
+            <label class="form-label ">Product Image</label>
+            <input type="file" name="image" class="form-control " required>
           </div>
 
         </div>

@@ -11,24 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_details', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
                 ->references('id')
                 ->on('products')
                 ->onDelete('cascade');
-
             $table->unsignedBigInteger('seller_id');
             $table->foreign('seller_id')
                 ->references('id')
                 ->on('sellers')
                 ->onDelete('cascade');
             $table->integer('quantity');
-            $table->string('note')
-            ->nullable();
-            $table->decimal('total_amount', 10, 2);
-                
-                $table->dateTime('sale_date');
+            $table->boolean('status')
+                ->default(false);
+
         });
     }
 

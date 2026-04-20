@@ -6,39 +6,29 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-      Schema::create('transactions', function (Blueprint $table) {
-    $table->id();
+        Schema::create('transactions', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')
+            ->references('id')
+            ->on('products')
+            ->onDelete('cascade');
+             $table->foreignId('seller_id')
+                ->constrained('sellers')
+                ->cascadeOnDelete();
 
-    $table->unsignedBigInteger('product_id');
-    $table->unsignedBigInteger('seller_id');
+            $table->integer('quantity');
 
-    $table->integer('quantity');
-    $table->enum('transaction_type', ['in', 'out', 'adjustment']);
+            $table->enum('transaction_type', ['in', 'out', 'return', 'adjustment']);
 
-    $table->timestamps();
-
-    $table->foreign('product_id')
-        ->references('id')
-        ->on('products')
-        ->onDelete('cascade');
-
-    $table->foreign('seller_id')
-        ->references('id')
-        ->on('sellers')
-        ->onDelete('cascade');
-});
+            $table->timestamps();
+        });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('transactions');
     }
 };

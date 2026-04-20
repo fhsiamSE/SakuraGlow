@@ -1,0 +1,73 @@
+[
+    {
+        "product_name": "Moist Diane Perfect Beauty Extra Straight Shampoo (450ml)",
+        "category": "Hair Care",
+        "description": "Moist Diane Perfect Beauty Extra Straight Shampoo (450ml) is a premium Japanese hair care shampoo designed to deeply cleanse while keeping hair smooth, straight, and frizz-free. It is enriched with natural moisturizing ingredients that help repair dry and damaged hair, leaving it silky, soft, and manageable. Ideal for daily use, it strengthens hair from root to tip and enhances shine for a healthy, salon-like finish.",
+        "price": "1750",
+        "image": "images/01_Moist_Diane_Perfect_Beauty_Extra_Straight_Shampoo_(450ml).png"
+    },
+     {
+        "product_name": "Moist Diane Extra Damage Repair Shampoo (450ml)",
+        "category": "Hair Care",
+        "description": "Moist Diane Extra Damage Repair Shampoo (450ml) is a premium Japanese hair care formula specially designed to repair severely damaged and dry hair. It deeply nourishes the hair from root to tip, helping restore strength, softness, and natural shine. Enriched with organic oils and protein-rich ingredients, it repairs split ends, reduces breakage, and leaves hair smooth, healthy, and revitalized after every wash.",
+        "price": "1750",
+        "image": "images/02_Moist_Diane_Extra_Damage_Repair_Shampoo_(450ml).png"
+    },
+
+    {
+        "product_name": "Moist Diane Extra Straight Treatment (conditioner) (450ml)",
+        "category": "Hair Care",
+        "description": "Moist Diane Extra Straight Treatment (conditioner) (450ml) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/03_Moist_Diane_Extra_Straight_Treatment_(conditioner)_(450ml).png"
+    },
+
+     {
+        "product_name": "Moist Diane Extra Damage Repair Treatment(conditioner) (450ml)",
+        "category": "Hair Care",
+        "description": "Moist Diane Extra Damage Repair Treatment(conditioner) (450ml) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/04_Moist_Diane_Extra_Damage_Repair_Treatment(conditioner)_(450ml).png"
+    },
+
+     {
+        "product_name": "Tsubaki Premium Moist Shampoo (450_ml)",
+        "category": "Hair Care",
+        "description": "Tsubaki Premium_Moist_Shampoo_(450_ml) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/05_Tsubaki_Premium_Moist_Shampoo_(450_ml).png"
+    },
+
+    {
+        "product_name": "Tsubaki Premium Moisturizing Hair Conditioner (450 ml)",
+        "category": "Hair Care",
+        "description": "Tsubaki Premium_Moist_Shampoo_(450_ml) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/06_Tsubaki_Premium_Moisturizing_Hair_Conditioner_(450_ml).png"
+    },
+
+     {
+        "product_name": "Shiseido Fino Premium Touch Essence Hair Mask (230g)",
+        "category": "Hair Care",
+        "description": "Shiseido Fino Premium Touch Essence Hair Mask (230g) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/07_Shiseido_Fino_Premium_Touch_Essence_Hair_Mask_(230g).png"
+    },
+
+     {
+        "product_name": "Tsubaki Premium Repair Mask, Hair Pack (180 g)",
+        "category": "Hair Care",
+        "description": "Tsubaki Premium Repair Mask, Hair Pack (180 g) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/08_Tsubaki_Premium_Repair_Mask,_Hair_Pack_(180_g).png"
+    },
+
+      {
+        "product_name": "Fino Premium Touch Thick Serum Hair Oil (70 ml)",
+        "category": "Hair Care",
+        "description": "Fino Premium Touch Thick Serum Hair Oil (70 ml) is a premium Japanese hair care product designed to provide intense hydration and straightening benefits. It helps to smooth frizz, reduce heat damage, and enhance the overall appearance of hair. Formulated with natural ingredients, it leaves hair soft, manageable, and with a salon-quality finish.",
+        "price": "1750",
+        "image": "images/09_Fino_Premium_Touch_Thick_Serum_Hair_Oil_(70_ml).png"
+    }
+
+]

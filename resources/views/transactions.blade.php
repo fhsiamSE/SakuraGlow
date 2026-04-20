@@ -10,7 +10,7 @@
       <h3 class="mb-0">Transactions</h3>
       <small class="text-muted">Track product stock movements (IN / OUT / ADJUSTMENT)</small>
     </div>
-     <a href="{{ route('transactions.create') }}" class="btn btn-primary">
+  <a href="{{ route('transactions.create') }}" class="btn btn-primary">
     <i class="bi bi-plus-lg me-1"></i> Add Transaction
   </a>
   </div>

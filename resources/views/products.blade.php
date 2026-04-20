@@ -1,9 +1,12 @@
 @extends('layout')
 
 @section('content')
-
 <div class="container-fluid">
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
@@ -62,58 +65,47 @@
               <th>Category</th>
               <th>Price</th>
               <th>Stock</th>
-              <th>Status</th>
               <th class="text-end">Actions</th>
             </tr>
           </thead>
 
           <tbody>
 
+            @foreach ($products as $product)
             <tr>
-              <td>1</td>
+              <td>{{ $loop->iteration }}</td>
               <td>
-                <div class="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/45" class="rounded me-2">
-                  Glow Serum
+                <div class="d-flex align-items-center text-truncate gap-2" style=" font-size: 10px;">
+                  <img src="{{ Storage::url($product->image) }}" class="rounded me-2" width="25" alt="{{ $product->product_name }}">
+                  {{ $product->product_name }}
                 </div>
               </td>
-              <td>Skincare</td>
-              <td>$25</td>
-              <td>120</td>
-              <td><span class="badge bg-success">In Stock</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-warning">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-sm btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
-            </tr>
+              <td>{{ $product->category }}</td>
+              <td>TK{{$product->price }}</td>
+              <td>{{ $product->stock }}</td>
+            <td class="text-end">
 
-            <tr>
-              <td>2</td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/45" class="rounded me-2">
-                  Hair Oil
-                </div>
-              </td>
-              <td>Hair Care</td>
-              <td>$15</td>
-              <td>45</td>
-              <td><span class="badge bg-warning text-dark">Low Stock</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-warning">
-                  <i class="bi bi-pencil"></i>
-                </button>
-                <button class="btn btn-sm btn-danger">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </td>
+          <a href="{{ route('products.edit', $product->id) }}" 
+            class="btn btn-sm btn-warning">
+            <i class="bi bi-pencil"></i>
+          </a>
+
+          <form action="{{ route('products.destroy', $product->id) }}" 
+                method="POST" 
+                class="d-inline">
+            @csrf
+            @method('DELETE')
+
+            <button type="submit" class="btn btn-sm btn-danger">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+
+        </td>
             </tr>
 
           </tbody>
+          @endforeach
 
         </table>
 
@@ -121,7 +113,8 @@
 
     </div>
   </div>
-
+<div class="mt-4 w-100 mx-auto justify-content-center">
+  {{ $products->links() }}
 </div>
-
+</div>
 @endsection

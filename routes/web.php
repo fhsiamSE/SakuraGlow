@@ -9,14 +9,6 @@ Route::get('/', function () {
     return view('dashboard');
 })->name('Dashboard');
 
-// Route::get('/sales', function () {
-//     return view('sales');
-// })->name('Sales');
-
-// Route::get('/transactions', function () {
-//     return view('transactions');
-// })->name('Transactions');
-
 Route::get('/stock', function () {
     return view('stock');
 })->name('Stock');
