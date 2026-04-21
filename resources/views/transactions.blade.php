@@ -35,7 +35,7 @@
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
-          <h6 class="text-muted">Stock Out</h6>
+          <h6 class="text-muted">Stock Outstand</h6>
           <h3 class="text-danger mb-0">-{{$totalOut}}</h3>
         </div>
       </div>

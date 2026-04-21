@@ -2,6 +2,20 @@
 
 @section('content')
 
+@php
+  $totalProducts = count($stockData);
+  $lowStock = 0;
+  $outOfStock = 0;
+
+  foreach ($stockData as $data) {
+      if ($data['stock'] <= 0) {
+          $outOfStock++;
+      } elseif ($data['stock'] < 5) {
+          $lowStock++;
+      }
+  }
+@endphp
+
 <div class="container-fluid">
 
   <!-- Header -->
@@ -19,29 +33,32 @@
   <!-- Summary Cards -->
   <div class="row g-3 mb-4">
 
+    <!-- Total Products -->
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Total Products</h6>
-          <h3 class="mb-0">120</h3>
+          <h3 class="mb-0">{{ $totalProducts }}</h3>
         </div>
       </div>
     </div>
 
+    <!-- Low Stock -->
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Low Stock</h6>
-          <h3 class="text-warning mb-0">18</h3>
+          <h3 class="text-warning mb-0">{{ $lowStock }}</h3>
         </div>
       </div>
     </div>
 
+    <!-- Out of Stock -->
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Out of Stock</h6>
-          <h3 class="text-danger mb-0">6</h3>
+          <h3 class="text-danger mb-0">{{ $outOfStock }}</h3>
         </div>
       </div>
     </div>
@@ -69,39 +86,54 @@
               <th>Category</th>
               <th>Stock</th>
               <th>Status</th>
-              <th class="text-end">Action</th>
             </tr>
           </thead>
 
           <tbody>
+            @foreach ($stockData as $index => $data)
 
-            <tr>
-              <td>1</td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/40" class="rounded me-2">
-                  Glow Serum
-                </div>
-              </td>
-              <td>Skincare</td>
-              <td>120</td>
-              <td><span class="badge bg-success">In Stock</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-primary">
-                  <i class="bi bi-plus"></i>
-                </button>
-                 <button class="btn btn-sm btn-danger">
-                  <i class="bi bi-dash"></i>
-                </button>
-              </td>
-            </tr>
+              @php
+                $stock = $data['stock'];
+              @endphp
 
+              <tr>
+                <td>{{ $index + 1 }}</td>
+
+                <td>
+                  <div class="d-flex align-items-center gap-2" style="font-size: 13px;">
+                    <img src="{{ Storage::url($data['product_img']) }}" class="rounded" width="30" alt="">
+                    <span class="text-truncate">{{ $data['product'] }}</span>
+                  </div>
+                </td>
+
+                <td>Skincare</td>
+
+                <td>{{ $stock }}</td>
+
+                <td>
+                  @if ($stock <= 0)
+                    <span class="badge bg-danger">Out of Stock</span>
+                  @elseif ($stock < 5)
+                    <span class="badge bg-warning text-dark">Low Stock</span>
+                  @else
+                    <span class="badge bg-success">In Stock</span>
+                  @endif
+                </td>
+
+              </tr>
+
+            @endforeach
           </tbody>
 
         </table>
       </div>
 
     </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="mt-4 w-100 mx-auto justify-content-center">
+    {{ $products->links() }}
   </div>
 
 </div>

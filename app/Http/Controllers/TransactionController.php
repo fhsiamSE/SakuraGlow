@@ -14,7 +14,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::paginate(3);
+        $transactions = Transaction::orderBy('created_at','desc')->paginate(10);
         $totalIn = Transaction::where('transaction_type', 'in')->sum('quantity');
         $totalOut = Transaction::where('transaction_type', 'out')->sum('quantity');
         $totalAdjusts = Transaction::where('transaction_type', 'adjustment')->sum('quantity');
