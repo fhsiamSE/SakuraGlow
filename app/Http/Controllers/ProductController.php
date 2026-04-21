@@ -12,13 +12,24 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $categories = Categorie::orderBy('categories')->get();
-        $products = Product::orderBy('product_name', 'asc')
-        ->paginate(10);;
-        return view('products', compact('products', 'categories'));
+    public function index(Request $request)
+{
+    $query = Product::query();
+
+    // Search by product name
+    if ($request->filled('search')) {
+        $query->where('product_name', 'like', '%' . $request->search . '%');
     }
+
+    // Filter by category
+    if ($request->filled('category')) {
+        $query->where('category', $request->category);
+    }
+
+    $products = $query->paginate(10)->withQueryString();
+
+    return view('products', compact('products'));
+}
 
     /**
      * Show the form for creating a new resource.

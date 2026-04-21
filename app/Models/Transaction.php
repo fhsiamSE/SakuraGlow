@@ -17,4 +17,8 @@ class Transaction extends Model
 
         return $this->belongsTo(Product::class);
     }
+    //Accessors 
+   public function getCreatedAtAttribute($value){
+    return date('d M Y', strtotime($value));
+}
 }
