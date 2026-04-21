@@ -30,11 +30,9 @@
             <label class="form-label">Category</label>
             <select name="category" class="form-select" required>
               <option value="">Select Category</option>
-              @foreach ($categories as $categorie)
-                
-              @endforeach
+              @foreach ($categories as $categorie)  
               <option value="{{ $categorie->categories }}">{{$categorie->categories}}</option>
-
+              @endforeach
             </select>
           </div>
 

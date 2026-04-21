@@ -32,7 +32,7 @@ class TransactionController extends Controller
   public function create()
 {
     $products = Product::orderBy('product_name', 'asc')
-        ->pluck('product_name', 'id');
+        ->pluck('product_name', 'id' , 'image');
 
     $sellers = Seller::orderBy('name', 'asc')
         ->pluck('name', 'id', );

@@ -14,9 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $categories = Categorie::orderBy('categories')->get();
         $products = Product::orderBy('product_name', 'asc')
         ->paginate(10);;
-        return view('products', compact('products'));
+        return view('products', compact('products', 'categories'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
     public function create()
     {
 
-        $categories = Categorie::all();
+        $categories = Categorie::orderBy('categories')->get();
 
         return view('createProduct', compact('categories'));
     }
