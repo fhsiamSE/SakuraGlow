@@ -30,9 +30,11 @@
             <label class="form-label">Category</label>
             <select name="category" class="form-select" required>
               <option value="">Select Category</option>
-              <option value="Skincare">Skincare</option>
-              <option value="Makeup">Makeup</option>
-              <option value="Hair Care">Hair Care</option>
+              @foreach ($categories as $categorie)
+                
+              @endforeach
+              <option value="{{ $categorie->categories }}">{{$categorie->categories}}</option>
+
             </select>
           </div>
 
