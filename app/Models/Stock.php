@@ -4,17 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Stock extends Model
 {
+    //
+    public $timestamps = false;
     protected $guarded = [];
-     public function seller()
-    {
-        return $this->belongsTo(Seller::class);
-    }
 
     public function product()
     {
-
         return $this->belongsTo(Product::class);
     }
 }

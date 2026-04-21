@@ -3,7 +3,11 @@
 @section('content')
 
 <div class="container-fluid">
-
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
@@ -23,7 +27,7 @@
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Stock In</h6>
-          <h3 class="text-success mb-0">+320</h3>
+          <h3 class="text-success mb-0">+{{$totalIn}}</h3>
         </div>
       </div>
     </div>
@@ -32,7 +36,7 @@
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Stock Out</h6>
-          <h3 class="text-danger mb-0">-180</h3>
+          <h3 class="text-danger mb-0">-{{$totalOut}}</h3>
         </div>
       </div>
     </div>
@@ -41,7 +45,7 @@
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Adjustments</h6>
-          <h3 class="text-warning mb-0">+12</h3>
+          <h3 class="text-warning mb-0">+{{$totalAdjusts}}</h3>
         </div>
       </div>
     </div>
@@ -99,43 +103,41 @@
           </thead>
 
           <tbody>
+            @foreach ($transactions as $transaction)
+               <tr>
+              <td>{{ $loop->iteration }}</td>
+              <td>
+                
+                <div class="d-flex align-items-center text-truncate gap-2" style=" font-size: 10px;">
+                  <img src="{{ Storage::url($transaction->product->image) }}" class="rounded me-2" width="25" alt="{{ $transaction->product->product_name }}">
+                  {{$transaction->product->product_name }}
+                </div>
+              </td>
+              <td>{{$transaction->seller->name}}</td>
+              <td>{{$transaction->quantity}}</td>
+              <td>
+              <span 
+              class="badge {{ $transaction->transaction_type == 'in' ? 'bg-success' : '' }}
+                          {{ $transaction->transaction_type == 'out' ? 'bg-danger' : '' }}
+                          {{ $transaction->transaction_type == 'adjustment' ? 'bg-warning' : '' }}">
 
-            <tr>
-              <td>1</td>
-              <td>Glow Serum</td>
-              <td>Admin</td>
-              <td>+50</td>
-              <td><span class="badge bg-success">IN</span></td>
-              <td>2026-04-20</td>
+                {{ $transaction->transaction_type }}
+              </span>
+              </td>
+              <td>{{$transaction->created_at}}</td>
             </tr>
-
-            <tr>
-              <td>2</td>
-              <td>Hair Oil</td>
-              <td>Rahim</td>
-              <td>-20</td>
-              <td><span class="badge bg-danger">OUT</span></td>
-              <td>2026-04-19</td>
-            </tr>
-
-            <tr>
-              <td>3</td>
-              <td>Face Cream</td>
-              <td>System</td>
-              <td>+5</td>
-              <td><span class="badge bg-warning text-dark">ADJUST</span></td>
-              <td>2026-04-18</td>
-            </tr>
+            @endforeach
 
           </tbody>
 
         </table>
 
       </div>
-
     </div>
   </div>
-
+<div class="mt-4 w-100 mx-auto justify-content-center">
+  {{ $transactions->links() }}
+</div>
 </div>
 
 @endsection

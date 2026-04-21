@@ -64,7 +64,7 @@
       <hr>
 
       <!-- Menu -->
-      <ul class="nav nav-pills flex-column gap-2 mb-auto">
+      <ul class="nav nav-pills flex-column gap-4 mb-auto">
 
         <li>
           <a href="{{ route('Dashboard') }}"
@@ -77,6 +77,13 @@
           <a href="{{ route('products.index') }}"
              class="nav-link text-white {{ request()->routeIs('products.*') ? 'active' : '' }}">
             <i class="bi bi-box-seam me-2"></i> Products
+          </a>
+        </li>
+
+        <li>
+          <a href="{{ route('products.index') }}"
+             class="nav-link text-white {{ request()->routeIs('products.*') ? 'active' : '' }}">
+            <i class="bi bi-tags me-2"></i> Category
           </a>
         </li>
 
@@ -95,8 +102,8 @@
         </li>
 
         <li>
-          <a href="{{ route('Stock') }}"
-             class="nav-link text-white {{ request()->routeIs('Stock') ? 'active' : '' }}">
+          <a href="{{ route('stocks.index') }}"
+             class="nav-link text-white {{ request()->routeIs('stocks.index') ? 'active' : '' }}">
             <i class="bi bi-archive me-2"></i> Stock
           </a>
         </li>

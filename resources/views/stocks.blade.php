@@ -90,41 +90,8 @@
                 <button class="btn btn-sm btn-primary">
                   <i class="bi bi-plus"></i>
                 </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>2</td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/40" class="rounded me-2">
-                  Hair Oil
-                </div>
-              </td>
-              <td>Hair Care</td>
-              <td>15</td>
-              <td><span class="badge bg-warning text-dark">Low Stock</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-primary">
-                  <i class="bi bi-plus"></i>
-                </button>
-              </td>
-            </tr>
-
-            <tr>
-              <td>3</td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img src="https://via.placeholder.com/40" class="rounded me-2">
-                  Face Cream
-                </div>
-              </td>
-              <td>Skincare</td>
-              <td>0</td>
-              <td><span class="badge bg-danger">Out of Stock</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-primary">
-                  <i class="bi bi-plus"></i>
+                 <button class="btn btn-sm btn-danger">
+                  <i class="bi bi-dash"></i>
                 </button>
               </td>
             </tr>

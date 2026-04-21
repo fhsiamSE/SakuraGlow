@@ -14,71 +14,58 @@
   <div class="card shadow-sm">
     <div class="card-body">
 
-      <form>
+     <form action="{{ route('transactions.store') }}" method="POST">
+    @csrf
 
-        <div class="row g-3">
+    <div class="row g-3">
 
-          <!-- Product -->
-          <div class="col-md-6">
+        <!-- Product -->
+        <div class="col-md-6">
             <label class="form-label">Product</label>
-            <select class="form-select">
-              <option>Select Product</option>
-              <option>Glow Serum</option>
-              <option>Hair Oil</option>
-              <option>Face Cream</option>
+            <select name="product_id" class="form-select" required>
+                <option value="">Select Product</option>
+                @foreach ($products as $id => $product)
+                    <option value="{{ $id }}">{{ $product }}</option>
+                @endforeach
             </select>
-          </div>
+        </div>
 
-          <!-- Seller -->
-          <div class="col-md-6">
+        <!-- Seller -->
+        <div class="col-md-6">
             <label class="form-label">Seller</label>
-            <select class="form-select">
-              <option>Select Seller</option>
-              <option>Admin</option>
-              <option>Rahim</option>
-              <option>Kamal</option>
+            <select name="seller_id" class="form-select" required>
+                <option value="">Select Seller</option>
+                @foreach ($sellers as $id => $seller)
+                    <option value="{{ $id }}">{{ $seller }}</option>
+                @endforeach
             </select>
-          </div>
+        </div>
 
-          <!-- Quantity -->
-          <div class="col-md-6">
+        <!-- Quantity -->
+        <div class="col-md-6">
             <label class="form-label">Quantity</label>
-            <input type="number" class="form-control" placeholder="Enter quantity">
-          </div>
+            <input type="number" name="quantity" class="form-control" placeholder="Enter quantity" required>
+        </div>
 
-          <!-- Transaction Type -->
-          <div class="col-md-6">
+        <!-- Transaction Type -->
+        <div class="col-md-6">
             <label class="form-label">Transaction Type</label>
-            <select class="form-select">
-              <option>Select Type</option>
-              <option value="in">IN (Stock Added)</option>
-              <option value="out">OUT (Stock Removed)</option>
-              <option value="adjustment">ADJUSTMENT</option>
+            <select name="transaction_type" class="form-select" required>
+                <option value="">Select Type</option>
+                <option value="in">IN (Stock Added)</option>
+                <option value="out">OUT (Stock Removed)</option>
+                <option value="adjustment">ADJUSTMENT</option>
             </select>
-          </div>
-
-          <!-- Notes (optional UI improvement) -->
-          <div class="col-12">
-            <label class="form-label">Notes</label>
-            <textarea class="form-control" rows="3" placeholder="Optional remarks..."></textarea>
-          </div>
-
         </div>
 
-        <!-- Buttons -->
-        <div class="mt-4 d-flex justify-content-end gap-2">
+    </div>
 
-          <button type="button" class="btn btn-secondary">
-            Cancel
-          </button>
-
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle me-1"></i> Save Transaction
-          </button>
-
-        </div>
-
-      </form>
+    <div class="mt-4 d-flex justify-content-end gap-2">
+        <button type="submit" class="btn btn-primary">
+            Save Transaction
+        </button>
+    </div>
+</form>
 
     </div>
   </div>

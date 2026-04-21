@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Transaction;
+use App\Models\Product;
+use App\Models\Seller;
 
 class TransactionController extends Controller
 {
@@ -11,23 +14,51 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('transactions');
+        $transactions = Transaction::paginate(3);
+        $totalIn = Transaction::where('transaction_type', 'in')->sum('quantity');
+        $totalOut = Transaction::where('transaction_type', 'out')->sum('quantity');
+        $totalAdjusts = Transaction::where('transaction_type', 'adjustment')->sum('quantity');
+        return view('transactions', compact(
+            'transactions',
+            'totalIn',
+            'totalOut',
+            'totalAdjusts'
+        ));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        return view('addTransactions');
-    }
+  public function create()
+{
+    $products = Product::orderBy('product_name', 'asc')
+        ->pluck('product_name', 'id');
+
+    $sellers = Seller::orderBy('name', 'asc')
+        ->pluck('name', 'id', );
+
+    return view('addTransactions', compact('products', 'sellers'));
+}
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+            $transaction = new Transaction();
+
+            $transaction->product_id = $request->product_id;
+            $transaction->seller_id = $request->seller_id;
+            $transaction->quantity = $request->quantity;
+            $transaction->transaction_type = $request->transaction_type;
+
+            $transaction->save();
+
+            // ✅ Redirect
+            return redirect()
+                ->route('transactions.index') // fix spelling
+                ->with('success', 'Transaction added successfully.');
+            
     }
 
     /**
