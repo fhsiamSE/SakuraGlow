@@ -3,17 +3,6 @@
 @section('content')
 
 @php
-  $totalProducts = count($stockData);
-  $lowStock = 0;
-  $outOfStock = 0;
-
-  foreach ($stockData as $data) {
-      if ($data['stock'] <= 0) {
-          $outOfStock++;
-      } elseif ($data['stock'] < 5) {
-          $lowStock++;
-      }
-  }
 @endphp
 
 <div class="container-fluid">
@@ -24,10 +13,6 @@
       <h3 class="mb-0">Stock</h3>
       <small class="text-muted">Manage and monitor product inventory</small>
     </div>
-
-    <button class="btn btn-primary disabled">
-      <i class="bi bi-plus-lg me-1"></i> Add Bulk Stock
-    </button>
   </div>
 
   <!-- Summary Cards -->
@@ -37,8 +22,8 @@
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
-          <h6 class="text-muted">Total Products</h6>
-          <h3 class="mb-0">{{ $totalProducts }}</h3>
+          <h6 class="text-muted">Total Stocks</h6>
+          <h3 class="mb-0">{{ $totalStock }}</h3>
         </div>
       </div>
     </div>

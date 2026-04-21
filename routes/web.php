@@ -15,4 +15,4 @@ Route::Resource('products', App\Http\Controllers\ProductController::class);
 Route::Resource('sales', App\Http\Controllers\SaleController::class);
 Route::Resource('transactions', App\Http\Controllers\TransactionController::class);
 Route::resource('stocks', App\Http\Controllers\StockController::class);
-Route::resource('catagories', App\Http\Controllers\CategorieController::class);
+Route::resource('categories', App\Http\Controllers\CategorieController::class);

@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     //
+     protected $guarded = [];
+     public $timestamps = false;
+    
 }

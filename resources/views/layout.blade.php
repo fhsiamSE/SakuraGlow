@@ -81,8 +81,8 @@
         </li>
 
         <li>
-          <a href="{{ route('catagories.index') }}"
-             class="nav-link text-white {{ request()->routeIs('catagories.*') ? 'active' : '' }}">
+          <a href="{{ route('categories.index') }}"
+             class="nav-link text-white {{ request()->routeIs('categories.*') ? 'active' : '' }}">
             <i class="bi bi-tags me-2"></i> Category
           </a>
         </li>

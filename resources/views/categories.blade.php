@@ -16,7 +16,7 @@
       <small class="text-muted">Manage your product categories</small>
     </div>
 
-    <a href="" class="btn btn-primary">
+    <a href={{ route('categories.create') }} class="btn btn-primary">
       <i class="bi bi-plus-lg me-1"></i> Add Category
     </a>
   </div>
@@ -42,77 +42,42 @@
     <div class="card-body p-0">
       <div class="table-responsive">
 
-        <table class="table table-hover align-middle mb-0">
-          <thead class="table-dark">
-            <tr>
-              <th>#</th>
-              <th>Category Name</th>
-              <th>Description</th>
-              <th class="text-end">Actions</th>
-            </tr>
-          </thead>
+        <table class="table table-hover align-middle mb-0"><table class="table table-hover align-middle mb-0">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Category Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
 
-         <tbody>
+  <tbody>
+    @forelse ($categories as $categorie)
+      <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $categorie->categories }}</td>
+        <td>
+          <form action="{{ route('categories.destroy', $categorie->id) }}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
 
-          <tr>
-            <td>1</td>
-            <td>Skincare</td>
-            <td>Products for skin health and beauty</td>
-            <td class="text-end">
-              <button class="btn btn-sm btn-warning">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button class="btn btn-sm btn-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Makeup</td>
-            <td>Cosmetic products for face and body</td>
-            <td class="text-end">
-              <button class="btn btn-sm btn-warning">
-                <i class="bi bi-pencil"></i>
-              </button>
-              <button class="btn btn-sm btn-danger">
-                <i class="bi bi-trash"></i>
-              </button>
-            </td>
-          </tr>
-
-        <tr>
-          <td>3</td>
-          <td>Hair Care</td>
-          <td>Shampoo, conditioner, and styling products</td>
-          <td class="text-end">
-            <button class="btn btn-sm btn-warning">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-danger">
+            <button type="submit" class="btn btn-sm btn-danger">
               <i class="bi bi-trash"></i>
             </button>
-          </td>
-        </tr>
+          </form>
+        </td>
+      </tr>
+    @empty
+      <tr>
+        <td colspan="3" class="text-center py-4 text-muted">
+          No categories found
+        </td>
+      </tr>
+    @endforelse
+  </tbody>
+</table>
 
-        <tr>
-          <td>4</td>
-          <td>Fragrance</td>
-          <td>Perfumes and body sprays</td>
-          <td class="text-end">
-            <button class="btn btn-sm btn-warning">
-              <i class="bi bi-pencil"></i>
-            </button>
-            <button class="btn btn-sm btn-danger">
-              <i class="bi bi-trash"></i>
-            </button>
-          </td>
-        </tr>
-
-</tbody>
-
-        </table>
+       
 
       </div>
     </div>
