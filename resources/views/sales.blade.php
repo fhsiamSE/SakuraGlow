@@ -19,20 +19,12 @@
   <!-- Summary Cards -->
   <div class="row g-3 mb-4">
 
-    <div class="col-md-4">
-      <div class="card shadow-sm border-0">
-        <div class="card-body">
-          <h6 class="text-muted">Today Sales</h6>
-          <h3 class="mb-0">$1,250</h3>
-        </div>
-      </div>
-    </div>
 
     <div class="col-md-4">
       <div class="card shadow-sm border-0">
         <div class="card-body">
           <h6 class="text-muted">Total Sales</h6>
-          <h3 class="mb-0">$24,580</h3>
+          <h3 class="mb-0">Tk {{$totalAmount}}</h3>
         </div>
       </div>
     </div>
@@ -90,10 +82,9 @@
           <thead class="table-dark">
             <tr>
               <th>#</th>
-              <th>Customer</th>
-              <th>Product</th>
-              <th>Date</th>
+              <th>Seller</th>
               <th>Amount</th>
+              <th>Date</th>
               <th>Status</th>
               <th class="text-end">Actions</th>
             </tr>
@@ -102,35 +93,27 @@
           <tbody>
 
             <tr>
+              @foreach ( $sales as $sale )
+                
               <td>1</td>
-              <td>Rahim</td>
-              <td>Glow Serum</td>
-              <td>2026-04-20</td>
-              <td>$25</td>
-              <td><span class="badge bg-success">Completed</span></td>
+              <td>{{ $sale->seller_name}}</td>
+              <td>Tk {{ $sale->amount}}</td>
+              <td>{{ $sale->date}}</td>
+              <td><span class="badge bg-success">{{ $sale->status}}</span></td>
               <td class="text-end">
+                <button class="btn btn-sm btn-info">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-info">
+                  <i class="bi bi-eye"></i>
+                </button>
                 <button class="btn btn-sm btn-info">
                   <i class="bi bi-eye"></i>
                 </button>
               </td>
             </tr>
+            @endforeach
 
-            <tr>
-              <td>2</td>
-              <td>Kamal</td>
-              <td>Hair Oil</td>
-              <td>2026-04-19</td>
-              <td>$15</td>
-              <td><span class="badge bg-warning text-dark">Pending</span></td>
-              <td class="text-end">
-                <button class="btn btn-sm btn-info">
-                  <i class="bi bi-eye"></i>
-                </button>
-                <button class="btn btn-sm btn-success">
-                  <i class="bi bi-check"></i>
-                </button>
-              </td>
-            </tr>
 
           </tbody>
 
@@ -140,7 +123,9 @@
 
     </div>
   </div>
-
+<div class="mt-4 w-100 mx-auto justify-content-center">
+  {{ $sales->links() }}
+</div>
 </div>
 
 @endsection

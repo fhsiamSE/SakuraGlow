@@ -14,7 +14,10 @@ class SaleController extends Controller
      */
     public function index()
     {
-        return view('sales');
+        $sales = Sale::orderBy('date','desc')->paginate(10);
+        $totalAmount = $sales->sum('amount');
+        
+        return view('sales', compact('sales' , 'totalAmount'));
     }
 
     /**
@@ -22,13 +25,12 @@ class SaleController extends Controller
      */
     public function create()
     {
-         $products = Product::orderBy('product_name', 'asc')
-        ->pluck('product_name', 'id' ,);
+        // Fetch full Product and Seller objects
+        $products = Product::orderBy('product_name', 'asc')->get();
+        $sellers = Seller::orderBy('name', 'asc')->get();
 
-        $sellers = Seller::orderBy('name', 'asc')
-        ->pluck('name', 'id', );
-
-        return view('addSaleInfo', compact('products', 'sellers' ));
+        // Pass them to the view
+        return view('addSaleInfo', compact('products', 'sellers'));
     }
 
     /**
@@ -36,19 +38,19 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-       $validated = $request->validate([
-        'product_id' => 'required',
-        'seller_id' => 'required',
-        'total_amount' => 'required',
-        'quantity' => 'required',
-        'sale_date' => 'required|date',
-        'payment_status' => 'required',
-        'notes' => 'nullable',
-    ]);
-
+        
+        $sale = new Sale();
         // Create the sale record
-        Sale::create($validated);
+            $sale->product_name = $request->input('product_name');
+            $sale->seller_name = $request->input('seller_name');
+            $sale->amount = $request->input('amount');
+            $sale->quantity = $request->input('quantity');
+            $sale->date = $request->input('date');
+            $sale->status = $request->input('status');
+            $sale->note = $request->input('note');
 
+            $sale->save();
+        // Redirect with a success message
         return redirect()->route('sales.index')->with('success', 'Sale has been added successfully!');
     }
 

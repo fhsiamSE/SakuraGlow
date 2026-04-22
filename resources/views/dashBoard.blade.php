@@ -46,7 +46,7 @@
           </div>
           <div>
             <h6 class="mb-0">Sales</h6>
-            <h4 class="fw-bold">320</h4>
+            <h4 class="fw-bold">{{$totalSales}}</h4>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
           </div>
           <div>
             <h6 class="mb-0">Revenue</h6>
-            <h4 class="fw-bold">$9,540</h4>
+            <h4 class="fw-bold">Tk {{$totalAmount}}</h4>
           </div>
         </div>
       </div>

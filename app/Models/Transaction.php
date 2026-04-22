@@ -20,5 +20,5 @@ class Transaction extends Model
     //Accessors 
    public function getCreatedAtAttribute($value){
     return date('d M Y', strtotime($value));
-}
+    }
 }
