@@ -4,11 +4,7 @@
 <div class="container-fluid">
 
 {{-- Success message --}}
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+<x-alert/>
 
 <!-- Header -->
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -44,9 +40,11 @@
                 <div class="col-md-3">
                     <select name="category" class="form-select">
                         <option value="">All Categories</option>
-                        <option value="Skincare" {{ request('category') == 'Skincare' ? 'selected' : '' }}>Skincare</option>
-                        <option value="Makeup" {{ request('category') == 'Makeup' ? 'selected' : '' }}>Makeup</option>
-                        <option value="Hair Care" {{ request('category') == 'Hair Care' ? 'selected' : '' }}>Hair Care</option>
+                         @foreach ($categories as $categorie)
+                          <option value="Skincare" {{ request('category') == '$categorie->categories' ? 'selected' : '' }}>
+                            {{$categorie->categories}}
+                          </option>
+                         @endforeach
                     </select>
                 </div>
 
@@ -92,7 +90,7 @@
                 <tbody>
                     @forelse ($products as $product)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $loop->iteration + ($products->perPage() * ($products->currentPage() - 1)) }}</td>
 
                         <td>
                             <div class="d-flex align-items-center text-truncate gap-2" style=" font-size: 10px;">

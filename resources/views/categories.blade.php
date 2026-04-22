@@ -3,11 +3,8 @@
 @section('content')
 <div class="container-fluid">
 
-  @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-  @endif
+ {{-- Success message --}}
+ <x-alert/>
 
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">

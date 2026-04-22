@@ -3,11 +3,8 @@
 @section('content')
 
 <div class="container-fluid">
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+ {{-- Success message --}}
+ <x-alert/>
   <!-- Header -->
   <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
@@ -105,7 +102,7 @@
           <tbody>
             @foreach ($transactions as $transaction)
                <tr>
-              <td>{{ $loop->iteration }}</td>
+              <td>{{ $loop->iteration + ($transactions->perPage() * ($transactions->currentPage() - 1)) }}</td>
               <td>
                 
                 <div class="d-flex align-items-center text-truncate gap-2" style=" font-size: 10px;">

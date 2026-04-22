@@ -16,7 +16,7 @@
           </div>
           <div>
             <h6 class="mb-0">Products</h6>
-            <h4 class="fw-bold">85</h4>
+            <h4 class="fw-bold">{{$totalProducts}}</h4>
           </div>
         </div>
       </div>
@@ -31,7 +31,7 @@
           </div>
           <div>
             <h6 class="mb-0">Categories</h6>
-            <h4 class="fw-bold">15</h4>
+            <h4 class="fw-bold">{{$totalCategoris}}</h4>
           </div>
         </div>
       </div>

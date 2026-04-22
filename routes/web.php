@@ -5,12 +5,17 @@ use App\Http\Controllers\Product;
 use App\Http\Controllers\Sale;
 use App\Http\Controllers\Transaction;
 use App\Http\Controllers\Stock;
+use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
-    return view('dashboard');
-})->name('Dashboard');
+    return view('userLogin');
+});
 
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('Dashboard');
 
+Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
 Route::Resource('products', App\Http\Controllers\ProductController::class);
 Route::Resource('sales', App\Http\Controllers\SaleController::class);
 Route::Resource('transactions', App\Http\Controllers\TransactionController::class);

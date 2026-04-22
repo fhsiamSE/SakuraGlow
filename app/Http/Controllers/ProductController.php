@@ -27,8 +27,9 @@ class ProductController extends Controller
     }
 
     $products = $query->paginate(10)->withQueryString();
+    $categories = Categorie::orderBy('categories')->get();
 
-    return view('products', compact('products'));
+    return view('products', compact('products', 'categories'));
 }
 
     /**
