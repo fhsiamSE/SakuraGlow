@@ -12,13 +12,29 @@ class SaleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $sales = Sale::orderBy('date','desc')->paginate(10);
+        $query = Sale::orderBy('date','desc');
+        
+        // Search filter
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->where('seller_name', 'like', "%$search%")
+                  ->orWhere('product_name', 'like', "%$search%");
+        }
+        
+        // Status filter
+        if ($request->has('status') && !empty($request->status)) {
+            $query->where('status', $request->status);
+        }
+        
+        $sales = $query->paginate(10)->appends($request->query());
+        
         // $totalAmount = $sales->sum('amount');
         $totalAmount = number_format(Sale::where('status', 'Paid')->sum('amount'), 0, '.', ',');
+        $pendingorders = Sale::where('status', 'Pending')->count();
         
-        return view('sales', compact('sales' , 'totalAmount'));
+        return view('sales', compact('sales' , 'totalAmount', 'pendingorders'));
     }
 
     /**
