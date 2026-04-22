@@ -60,7 +60,8 @@ class SaleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $sales = Sale::findOrFail($id);
+        return view('salesDetails', compact('sales'));
     }
 
     /**

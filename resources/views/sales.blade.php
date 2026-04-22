@@ -86,7 +86,7 @@
               <th>Amount</th>
               <th>Date</th>
               <th>Status</th>
-              <th class="text-end">Actions</th>
+              <th class="text-center">Actions</th>
             </tr>
           </thead>
 
@@ -101,14 +101,19 @@
               <td>{{ $sale->date}}</td>
               <td><span class="badge bg-success">{{ $sale->status}}</span></td>
               <td class="text-end">
-                <button class="btn btn-sm btn-info">
-                  <i class="bi bi-eye"></i>
+                <!-- View Details Button -->
+                <a href="{{ route('sales.show', $sale->id) }}" class="btn btn-sm btn-info">
+                  <i class="bi bi-eye"></i> View Details
+                </a>
+
+                <!-- Update Button -->
+                <button class="btn btn-sm btn-warning">
+                  <i class="bi bi-pencil"></i> Update
                 </button>
-                <button class="btn btn-sm btn-info">
-                  <i class="bi bi-eye"></i>
-                </button>
-                <button class="btn btn-sm btn-info">
-                  <i class="bi bi-eye"></i>
+
+                <!-- Delete Button -->
+                <button class="btn btn-sm btn-danger">
+                  <i class="bi bi-trash"></i> Delete
                 </button>
               </td>
             </tr>
