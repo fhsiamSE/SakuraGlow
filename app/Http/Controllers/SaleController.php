@@ -16,7 +16,7 @@ class SaleController extends Controller
     {
         $sales = Sale::orderBy('date','desc')->paginate(10);
         // $totalAmount = $sales->sum('amount');
-        $totalAmount = number_format($sales->sum('amount'), 0, '.', ',');
+        $totalAmount = number_format(Sale::where('status', 'Paid')->sum('amount'), 0, '.', ',');
         
         return view('sales', compact('sales' , 'totalAmount'));
     }
