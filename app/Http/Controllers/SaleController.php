@@ -15,7 +15,8 @@ class SaleController extends Controller
     public function index()
     {
         $sales = Sale::orderBy('date','desc')->paginate(10);
-        $totalAmount = $sales->sum('amount');
+        // $totalAmount = $sales->sum('amount');
+        $totalAmount = number_format($sales->sum('amount'), 0, '.', ',');
         
         return view('sales', compact('sales' , 'totalAmount'));
     }
