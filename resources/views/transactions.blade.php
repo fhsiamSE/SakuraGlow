@@ -53,28 +53,34 @@
   <div class="card shadow-sm mb-3">
     <div class="card-body">
 
-      <div class="row g-2">
+      <form method="GET" action="{{ route('transactions.index') }}">
+        <div class="row g-2">
 
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Search product or seller...">
+          <div class="col-md-5">
+            <input type="text" 
+                   name="search" 
+                   class="form-control" 
+                   placeholder="Search product or seller..."
+                   value="{{ request('search') }}">
+          </div>
+
+          <div class="col-md-3">
+            <select name="type" class="form-select">
+              <option value="">All Types</option>
+              <option value="in" {{ request('type') == 'in' ? 'selected' : '' }}>In</option>
+              <option value="out" {{ request('type') == 'out' ? 'selected' : '' }}>Out</option>
+              <option value="adjustment" {{ request('type') == 'adjustment' ? 'selected' : '' }}>Adjustment</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <button type="submit" class="btn btn-outline-secondary w-100">
+              <i class="bi bi-funnel me-1"></i> Filter
+            </button>
+          </div>
+
         </div>
-
-        <div class="col-md-3">
-          <select class="form-select">
-            <option>All Types</option>
-            <option>In</option>
-            <option>Out</option>
-            <option>Adjustment</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <button class="btn btn-outline-secondary w-100">
-            <i class="bi bi-funnel me-1"></i> Filter
-          </button>
-        </div>
-
-      </div>
+      </form>
 
     </div>
   </div>
@@ -125,6 +131,15 @@
             </tr>
             @endforeach
 
+            @if ($transactions->count() == 0)
+            <tr>
+              <td colspan="6" class="text-center text-muted py-4">
+                <i class="bi bi-inbox" style="font-size: 2rem;"></i>
+                <p class="mt-2">No transactions found. Try adjusting your filters.</p>
+              </td>
+            </tr>
+            @endif
+
           </tbody>
 
         </table>
@@ -132,8 +147,17 @@
       </div>
     </div>
   </div>
-<div class="mt-4 w-100 mx-auto justify-content-center">
-  {{ $transactions->links() }}
+<div class="mt-4 d-flex justify-content-between align-items-center">
+  <div>
+    @if (request('search') || request('type'))
+    <a href="{{ route('transactions.index') }}" class="btn btn-outline-secondary btn-sm">
+      <i class="bi bi-arrow-clockwise me-1"></i> Clear Filters
+    </a>
+    @endif
+  </div>
+  <div>
+    {{ $transactions->links() }}
+  </div>
 </div>
 </div>
 

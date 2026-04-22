@@ -12,12 +12,31 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::orderBy('created_at','desc')->paginate(10);
+        $query = Transaction::with(['product', 'seller'])->orderBy('created_at','desc');
+        
+        // Search filter
+        if ($request->has('search') && !empty($request->search)) {
+            $search = $request->search;
+            $query->whereHas('product', function($q) use ($search) {
+                $q->where('product_name', 'like', "%$search%");
+            })->orWhereHas('seller', function($q) use ($search) {
+                $q->where('name', 'like', "%$search%");
+            });
+        }
+        
+        // Type filter
+        if ($request->has('type') && !empty($request->type)) {
+            $query->where('transaction_type', $request->type);
+        }
+        
+        $transactions = $query->paginate(10)->appends($request->query());
+        
         $totalIn = Transaction::where('transaction_type', 'in')->sum('quantity');
         $totalOut = Transaction::where('transaction_type', 'out')->sum('quantity');
         $totalAdjusts = Transaction::where('transaction_type', 'adjustment')->sum('quantity');
+        
         return view('transactions', compact(
             'transactions',
             'totalIn',
