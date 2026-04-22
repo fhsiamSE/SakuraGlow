@@ -69,7 +69,11 @@ class SaleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+        $products = Product::orderBy('product_name', 'asc')->get();
+        $sellers = Seller::orderBy('name', 'asc')->get();
+
+        return view('saleEdit', compact('sale', 'products', 'sellers'));
     }
 
     /**
@@ -77,7 +81,18 @@ class SaleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $sale = Sale::findOrFail($id);
+
+        $sale->product_name = $request->input('product_name');
+        $sale->seller_name = $request->input('seller_name');
+        $sale->amount = $request->input('amount');
+        $sale->quantity = $request->input('quantity');
+        $sale->status = $request->input('status');
+        $sale->note = $request->input('note');
+
+        $sale->save();
+
+        return redirect()->route('sales.index')->with('success', 'Sale has been updated successfully!');
     }
 
     /**
