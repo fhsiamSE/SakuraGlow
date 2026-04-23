@@ -15,7 +15,7 @@ class DashboardController extends Controller
         $totalSales = Sale::count();
         $sales = Sale::all();
         $totalAmount = $sales->sum('amount');
-        return view('dashboard',
+        return view('dashBoard',
         compact( 
             'totalProducts', 
             'totalCategoris', 
