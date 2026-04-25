@@ -9,6 +9,31 @@
     </head>
 <body>
 
+     @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Validation Errors:</strong>
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
@@ -19,14 +44,14 @@
                 </div>
                 <div class="card-body">
                     <!-- Form Start -->
-                    <form action="" method="POST">
+                    <form action="{{ route('authCheck') }}" method="POST">
                         @csrf
                         
-                        <!-- Email input -->
+                        <!-- Admin Name input -->
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
-                            @error('email')
+                            <label for="admin_name" class="form-label">Admin Name</label>
+                            <input type="text" class="form-control @error('admin_name') is-invalid @enderror" id="admin_name" name="admin_name" value="{{ old('admin_name') }}" required>
+                            @error('admin_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -41,10 +66,10 @@
                         </div>
 
                         <!-- Remember me checkbox -->
-                        <div class="mb-3 form-check">
+                        {{-- <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
                             <label class="form-check-label" for="remember">Remember me</label>
-                        </div>
+                        </div> --}}
 
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary w-100">Login</button>

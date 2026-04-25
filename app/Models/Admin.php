@@ -1,12 +1,26 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
-    protected $guarded = [];
-    public $timestamps = false;
+    protected $table = 'admins'; // or 'admins' if plural
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 }
