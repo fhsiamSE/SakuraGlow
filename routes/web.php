@@ -11,7 +11,11 @@ use App\Http\Controllers\DashboardController;
 //     return view('userLogin');
 // });
 
+Route::get('/registration', function () {
+    return view('adminRegistration');
+});
 
+Route::post('/register', [App\Http\Controllers\AdminController::class, 'register'])->name('admin.register');
 
 Route::get('/', [DashboardController::class, 'show'])->name('Dashboard');
 Route::Resource('products', App\Http\Controllers\ProductController::class);
