@@ -112,9 +112,9 @@
 
       <!-- Logout Footer -->
       <div class="mt-auto pt-3">
-        <button class="btn btn-outline-light w-100">
+        <a href="{{ route('logout') }}" class="btn btn-outline-light w-100">
           <i class="bi bi-box-arrow-right me-2"></i> Logout
-        </button>
+        </a>
       </div>
 
     </div>
