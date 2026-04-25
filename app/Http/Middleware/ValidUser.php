@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ValidUser
 {
@@ -13,13 +14,10 @@ class ValidUser
      *
      * @param  Closure(Request): (Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(2==2){
+    public function handle(Request $request, Closure $next): Response{
+        if(Auth::check()){
             return $next($request);
-        }else{
-            return redirect()->route('/login')->with('error', 'Invalid credentials. Please try again.');
         }
-        
+        return redirect()->route('login');
     }
 }
